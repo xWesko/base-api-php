@@ -1,9 +1,13 @@
 <?php
+    require_once 'clases/conexion/conexion.php';
 
-echo "Hola mundo";
+    $conexion = new Conexion();
 
-echo "<br>";
+    $query = "select * from pacientes";
 
-echo "commit para sincronizar los cambios."
+    // print_r( $conexion->obtenerDatos( $query ) );
+
+
+    //var_dump($conexion);
 
 ?>
