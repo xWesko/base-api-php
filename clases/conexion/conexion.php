@@ -13,11 +13,11 @@ class conexion {
         $listadatos = $this->datosConexion();
 
         foreach ( $listadatos as $key => $value ) {
-            $this->server = $value['server'];
-            $this->user = $value['user'];
-            $this->password = $value['password'];
-            $this->database = $value['database'];
-            $this->port = $value['port'];
+            $this->server = $value["server"];
+            $this->user = $value["user"];
+            $this->password = $value["password"];
+            $this->database = $value["database"];
+            $this->port = $value["port"];
         }
 
         $this->conexion = new mysqli( $this->server,$this->user,$this->password,$this->database,$this->port);
@@ -32,7 +32,7 @@ class conexion {
     //Leer archivo config
     private function datosConexion() {
         $direccion = dirname( __FILE__ );
-        $jsondata = file_get_contents( $direccion . '/' . 'config' );
+        $jsondata = file_get_contents( $direccion . "/" . "config" );
 
         return json_decode( $jsondata, true );
     }
@@ -40,7 +40,7 @@ class conexion {
     //Encondig utf8
     private function convertirUTF8( $array ){
         array_walk_recursive( $array,function( &$item, $key ){
-            if( !mb_detect_encoding( $item,'utf-8',true ) ){
+            if( !mb_detect_encoding( $item,"utf-8",true ) ){
                 $item = utf8_encode( $item );
             }
         });
