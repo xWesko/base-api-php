@@ -1,9 +1,9 @@
 <?php
+    require_once 'clases/conexion/conexion.php';
 
-echo "Hola mundo";
+    $conexion = new Conexion();
 
-echo "<br>";
 
-echo "commit para sincronizar los cambios."
+    //var_dump($conexion);
 
 ?>
