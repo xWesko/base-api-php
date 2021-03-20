@@ -32,7 +32,7 @@ class conexion {
     //Leer archivo config
     private function datosConexion() {
         $direccion = dirname( __FILE__ );
-        $jsondata = file_get_contents( $direccion . "/" . "config" );
+        $jsondata = file_get_contents( $direccion . '/' . 'config' );
 
         return json_decode( $jsondata, true );
     }
@@ -66,6 +66,7 @@ class conexion {
     }
 
 
+    //Insert
     public function nonQueryId( $sqlstr ){
         $results = $this->conexion->query($sqlstr);
         $filas = $this->conexion->affected_rows;

@@ -3,9 +3,9 @@
 
     $conexion = new Conexion();
 
-    $query = "select * from pacientes";
+    $query = "INSERT INTO pacientes(INE) value('1')";
 
-    // print_r( $conexion->obtenerDatos( $query ) );
+    print_r( $conexion->nonQueryId( $query ) );
 
 
     //var_dump($conexion);
