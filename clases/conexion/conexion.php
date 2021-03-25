@@ -78,10 +78,10 @@ class conexion {
         }
     }
      
-    // //encriptar
+    //encriptar
 
-    // protected function encriptar($string){
-    //     return md5($string);
-    // }
+    protected function encriptar($string){
+        return md5($string);
+    }
     
 }
