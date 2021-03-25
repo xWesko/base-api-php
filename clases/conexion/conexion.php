@@ -13,11 +13,11 @@ class conexion {
         $listadatos = $this->datosConexion();
 
         foreach ( $listadatos as $key => $value ) {
-            $this->server = $value['server'];
-            $this->user = $value['user'];
-            $this->password = $value['password'];
-            $this->database = $value['database'];
-            $this->port = $value['port'];
+            $this->server = $value["server"];
+            $this->user = $value["user"];
+            $this->password = $value["password"];
+            $this->database = $value["database"];
+            $this->port = $value["port"];
         }
 
         $this->conexion = new mysqli( $this->server,$this->user,$this->password,$this->database,$this->port);
@@ -40,7 +40,7 @@ class conexion {
     //Encondig utf8
     private function convertirUTF8( $array ){
         array_walk_recursive( $array,function( &$item, $key ){
-            if( !mb_detect_encoding( $item,'utf-8',true ) ){
+            if( !mb_detect_encoding( $item,"utf-8",true ) ){
                 $item = utf8_encode( $item );
             }
         });
@@ -66,6 +66,7 @@ class conexion {
     }
 
 
+    //Insert
     public function nonQueryId( $sqlstr ){
         $results = $this->conexion->query($sqlstr);
         $filas = $this->conexion->affected_rows;
@@ -77,10 +78,10 @@ class conexion {
         }
     }
      
-    // //encriptar
+    //encriptar
 
-    // protected function encriptar($string){
-    //     return md5($string);
-    // }
+    protected function encriptar($string){
+        return md5($string);
+    }
     
 }
