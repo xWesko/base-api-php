@@ -66,7 +66,7 @@ class conexion {
     }
 
 
-    //Insert
+    //Insert, devuelve el ID del insert
     public function nonQueryId( $sqlstr ){
         $results = $this->conexion->query($sqlstr);
         $filas = $this->conexion->affected_rows;
@@ -79,7 +79,6 @@ class conexion {
     }
      
     //encriptar
-
     protected function encriptar($string){
         return md5($string);
     }
