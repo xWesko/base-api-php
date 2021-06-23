@@ -39,7 +39,6 @@
             $_respuestas = new respuestas;
             $datos = json_decode( $json, true );
 
-
             if( !isset($datos['nombre']) || !isset($datos['ine']) || !isset($datos['email']) ) {
                 return $_respuestas->error_400();
             } else {
@@ -76,6 +75,54 @@
            $resp = parent::nonQueryId($query);
 
             if( $resp ){
+               return $resp;
+            } else {
+               return 0;
+            }
+        }
+
+        public function put( $json ){
+
+            $_respuestas = new respuestas;
+            $datos = json_decode( $json, true );
+
+            if( !isset($datos['paciente_id']) ) {
+                return $_respuestas->error_400();
+            } else {
+                $this->paciente_id = $datos['paciente_id'];
+                if( isset($datos['nombre']) )           { $this->nombre = $datos['nombre'];  }
+                if( isset($datos['ine']) )              { $this->ine = $datos['ine'];  }
+                if( isset($datos['email']) )            { $this->email = $datos['email'];  }
+                if( isset($datos['telefono']) )         { $this->telefono = $datos['telefono'];  }
+                if( isset($datos['direccion']) )        { $this->direccion = $datos['direccion'];  }
+                if( isset($datos['cp']) )               { $this->cp = $datos['cp'];  }
+                if( isset($datos['genero']) )           { $this->genero = $datos['genero'];  }
+                if( isset($datos['fecha_nacimiento']) ) { $this->fecha_nacimiento = $datos['fecha_nacimiento'];  }
+
+                $resp = $this->modificarPaciente();
+
+            
+                if( $resp ) {
+                    $respuesta = $_respuestas->response;
+                    $respuesta["result"] = array(
+                        "paciente_id" =>  $this->paciente_id
+                    );
+                    return $respuesta;
+                } else {
+                    return $_respuestas->error_500();
+                }
+            }
+
+
+        }
+
+        private function modificarPaciente() {
+            $query = "UPDATE " . $this->table . " SET nombre='".$this->nombre."', ine='".$this->ine."', email='".$this->email."', telefono='".$this->telefono."', direccion='".$this->direccion."', cp='".$this->cp."', genero='".$this->genero."', fecha_nacimiento='".$this->fecha_nacimiento."' WHERE paciente_id='".$this->paciente_id."' ";
+    
+            $resp = parent::nonQuery($query);
+
+        
+            if( $resp >= 1 ){
                return $resp;
             } else {
                return 0;
