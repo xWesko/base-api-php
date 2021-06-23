@@ -86,7 +86,7 @@ INSERT INTO `pacientes` (`paciente_id`, `ine`, `nombre`, `direccion`, `cp`, `tel
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `usuario` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `passwd` varchar(45) DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -94,7 +94,7 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `usuario`, `password`, `estado`) VALUES
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `passwd`, `estado`) VALUES
 (1, 'usuario1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Activo'),
 (2, 'usuario2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Activo'),
 (3, 'usuario3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Activo'),

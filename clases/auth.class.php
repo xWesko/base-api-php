@@ -15,12 +15,12 @@
             } else {
                 // todo esta bien
                 $usuario  = $datos["usuario"];
-                $password = $datos["passwd"];
-                $password = parent::encriptar( $password );
+                $passwd = $datos["passwd"];
+                $passwd = parent::encriptar( $passwd );
                 $datos = $this->obtenerDatosUsuario($usuario);
                 if( $datos ) {
                     // verificar si la contraseña es correcta
-                    if( $password == $datos[0]['passwd'] ) {
+                    if( $passwd == $datos[0]['passwd'] ) {
 
                         if($datos[0]['estado'] == 'Activo' ) {
                             //crear token
@@ -54,6 +54,7 @@
 
         private function obtenerDatosUsuario( $correo ) {
             $query = "SELECT id_usuario, passwd, estado FROM usuarios WHERE usuario = '$correo'";
+            print_r( $query);
             $datos = parent::obtenerDatos( $query );
             if( isset( $datos[0]["id_usuario"] ) ){
                 return $datos;
