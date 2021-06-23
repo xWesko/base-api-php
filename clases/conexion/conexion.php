@@ -59,6 +59,7 @@ class conexion {
         return $this->convertirUTF8( $resultArray );
     }
 
+    //Devuelve filas afectadas
     public function nonQuery( $sqlstr ){
         $results = $this->conexion->query( $sqlstr );
 
