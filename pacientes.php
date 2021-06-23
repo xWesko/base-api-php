@@ -66,7 +66,23 @@
 
 
     } else if ( $_SERVER["REQUEST_METHOD"] == "DELETE" ) {
-        echo "hola delete";
+
+        //Recibimos los dato enviados
+        $postBody = file_get_contents("php://input");
+
+        //Enviamos al manejador
+        $datosArray = $_pacientes->delete($postBody);
+
+        //Devolvemos una respuesta
+        header('Content-Type: application/json');
+        if( isset( $datosArray["result"]["error_id"] ) ){
+            $responseCode = $datosArray["result"]["error_id"];
+            http_response_code( $responseCode );
+        } else {
+            http_response_code(200);
+        }
+        echo json_encode($datosArray);
+
     } else {
         header('Content-Type: application/json');
         $datosArray = $_respuestas->error_405();

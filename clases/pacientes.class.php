@@ -99,9 +99,7 @@
                 if( isset($datos['genero']) )           { $this->genero = $datos['genero'];  }
                 if( isset($datos['fecha_nacimiento']) ) { $this->fecha_nacimiento = $datos['fecha_nacimiento'];  }
 
-                $resp = $this->modificarPaciente();
-
-            
+                $resp = $this->modificarPaciente();            
                 if( $resp ) {
                     $respuesta = $_respuestas->response;
                     $respuesta["result"] = array(
@@ -113,7 +111,6 @@
                 }
             }
 
-
         }
 
         private function modificarPaciente() {
@@ -121,11 +118,44 @@
     
             $resp = parent::nonQuery($query);
 
-        
             if( $resp >= 1 ){
                return $resp;
             } else {
                return 0;
+            }
+        }
+
+        public function delete( $json ) {
+
+            $_respuestas = new respuestas;
+            $datos = json_decode( $json, true );
+
+            if( !isset($datos['paciente_id']) ) {
+                return $_respuestas->error_400();
+            } else {
+                $this->paciente_id = $datos['paciente_id'];
+
+                $resp = $this->eliminarPaciente();            
+                if( $resp ) {
+                    $respuesta = $_respuestas->response;
+                    $respuesta["result"] = array(
+                        "paciente_id" =>  $this->paciente_id
+                    );
+                    return $respuesta;
+                } else {
+                    return $_respuestas->error_500();
+                }
+            }
+        }
+
+        private function eliminarPaciente() {
+            $query = "DELETE FROM ". $this->table . " WHERE paciente_id =  '" .$this->paciente_id."'";
+            $resp = parent::nonQuery($query);
+
+            if( $resp >= 1 ){
+                return $resp;
+            } else {
+                return 0;
             }
         }
 
