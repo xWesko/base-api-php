@@ -15,7 +15,7 @@
         private $fecha_nacimiento = "0000-00-00";
         private $email = "";
         private $token = "";
-        // b234152da448ec46c59ac2f1103d53dc
+        // 8090f6f95040d5269c48ca23bc0a19c3
 
         public function listaPacientes( $pagina = 1 ){
 
@@ -173,7 +173,8 @@
                     } else {
                         $this->paciente_id = $datos['paciente_id'];
         
-                        $resp = $this->eliminarPaciente();            
+                        $resp = $this->eliminarPaciente();    
+                    
                         if( $resp ) {
                             $respuesta = $_respuestas->response;
                             $respuesta["result"] = array(
@@ -192,7 +193,8 @@
         }
 
         private function eliminarPaciente() {
-            $query = "DELETE FROM ". $this->table . " WHERE paciente_id =  '" .$this->paciente_id."'";
+            $query = "DELETE FROM ". $this->table . " WHERE paciente_id = '" .$this->paciente_id."'";
+
             $resp = parent::nonQuery($query);
 
             if( $resp >= 1 ){
